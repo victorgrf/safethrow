@@ -5,14 +5,14 @@ namespace SafeThrow\Exceptions\Defaults;
 use Exception;
 
 abstract class HttpException extends Exception {
-    private array $errors;
+    private null|array $errors;
 
     public function __construct(
         private int $status_code,
         string $message,
-        ?array $errors = null
+        null|array $errors = null
     ) {
-        $this->errors = $errors ?? ['default' => $message];
+        $this->errors = $errors;
         parent::__construct($message);
     }
 
@@ -20,7 +20,7 @@ abstract class HttpException extends Exception {
         return $this->status_code;
     }
 
-    public function getErrors(): array {
+    public function getErrors(): null|array {
         return $this->errors;
     }
 }

@@ -19,13 +19,15 @@ class BadRequestException extends HttpException {
         $this->indexes = $indexes;
 
         // Aplicando a mensagem específica em $errors
-        $errors = [];
-        foreach ($this->indexes as $index) {
-            $errors[$index] = "O conteúdo forncecido para ($index) é inválido.";
+        if (!empty($indexes)) {
+            $errors = [];
+            foreach ($this->indexes as $index) {
+                $errors[$index] = "O conteúdo forncecido para ($index) é inválido.";
+            }
         }
 
         // Enviando para a clase pai
-        parent::__construct($status_code, $message, $errors);
+        parent::__construct($status_code, $message, $errors ?? null);
     }
 
     public function getIndexes(): array {

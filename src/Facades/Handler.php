@@ -15,10 +15,11 @@ class Handler extends ExceptionHandler {
 
     private static function generateResponse(HttpException $exception): JsonResponse {
         $status_code = $exception->getStatusCode();
-        $error_response = [
-            'message' => $exception->getMessage(),
-            'errors' => $exception->getErrors()
-        ];
+        $error_response = ['message' => $exception->getMessage()];
+
+        if ($exception->getErrors()) {
+            $error_response['errors'] = $exception->getErrors();
+        }
 
         // Adicionando informações do caminho até o erro caso o debug esteja ativado
         if (config('app.debug')) {

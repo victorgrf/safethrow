@@ -1,0 +1,1 @@
+{"version":1,"defects":{"SafeThrow\\Tests\\ExceptionsTest::test_bad_request_exception":8,"SafeThrow\\Tests\\ExceptionsTest::test_conflict_exception":7},"times":{"SafeThrow\\Tests\\ExceptionsTest::test_bad_request_exception":0.036,"SafeThrow\\Tests\\ExceptionsTest::test_conflict_exception":0}}
