@@ -2,8 +2,16 @@
 
 namespace SafeThrow\Facades;
 
+use SafeThrow\Services\ExceptionCaller;
+use SafeThrow\Services\Suppress;
+
 class Exceptions {
-    public function suppress() {
+    /**
+     * Cria uma instância de SafeThrow\Facades\Suppress.
+     * 
+     * Use uma corrente de funções como notFoud() e forbidden() e por último um try() para suprimir as exceções específicadas caso sejam lançadas.
+     */
+    public function suppress(): Suppress {
         return new Suppress();
     }
 

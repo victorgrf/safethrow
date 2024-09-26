@@ -7,13 +7,20 @@ use SafeThrow\Exceptions\Defaults\HttpException;
 
 class UnauthorizedException extends HttpException {
     private string $reason;
+    
+    public static function getDefaultMessage(): string {
+        return 'Não autorizado.';
+    }
 
     public function __construct(
         string $reason = 'Não específicado.',
     ) {
         // Dados Padrões
         $status_code = Response::HTTP_UNAUTHORIZED;
-        $message = 'Não autorizado.';
+        $message = $this->getDefaultMessage();
+
+        // Mensagem específica
+        $this->reason = $reason;
 
         // Aplicando a mensagem específica em $errors
         $errors = [

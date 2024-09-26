@@ -1,6 +1,6 @@
 <?php
 
-namespace SafeThrow\Facades;
+namespace SafeThrow\Services;
 
 use SafeThrow\Exceptions\BadRequestException;
 use SafeThrow\Exceptions\ConflictException;
@@ -75,7 +75,7 @@ class ExceptionCaller {
      * 
      * O response do request será um JsonResponse com status code 422.
      */
-    public function unprocessableContent(string $entity, string $reason): void {
+    public function unprocessableEntity(string $entity, string $reason): void {
         if ($this->should_throw) {
             throw new UnprocessableEntityException($entity, $reason);
         }
@@ -86,7 +86,7 @@ class ExceptionCaller {
      * 
      * O response do request será um JsonResponse com status code 500.
      */
-    public function internalServerError(...$errors): void {
+    public function internalServerError(array $errors): void {
         if ($this->should_throw) {
             throw new InternalServerErrorException($errors);
         }

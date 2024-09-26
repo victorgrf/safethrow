@@ -23,4 +23,6 @@ abstract class HttpException extends Exception {
     public function getErrors(): null|array {
         return $this->errors;
     }
+
+    abstract public static function getDefaultMessage(): string;
 }

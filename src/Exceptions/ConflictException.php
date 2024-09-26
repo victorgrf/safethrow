@@ -9,13 +9,17 @@ class ConflictException extends HttpException {
     private string $resource;
     private string $state;
 
+    public static function getDefaultMessage(): string {
+        return 'Incapaz de completar a requisição devido a um conflito.';
+    }
+
     public function __construct(
         string $resource,
         string $state
     ) {
         // Dados Padrões
         $status_code = Response::HTTP_CONFLICT;
-        $message = 'Incapaz de completar a requisição devido a um conflito.';
+        $message = $this->getDefaultMessage();
         
         // Mensagem específica
         $this->resource = $resource;

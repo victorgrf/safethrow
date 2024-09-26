@@ -8,6 +8,10 @@ use SafeThrow\Exceptions\Defaults\HttpException;
 class NotFoundException extends HttpException {
     private string $index;
     private string $where;
+    
+    public static function getDefaultMessage(): string {
+        return 'Conteúdo não encontrado.';
+    }
 
     public function __construct(
         string $index,
@@ -15,7 +19,7 @@ class NotFoundException extends HttpException {
     ) {
         // Dados Padrões
         $status_code = Response::HTTP_NOT_FOUND;
-        $message = 'Conteúdo não encontrado.';
+        $message = $this->getDefaultMessage();
 
         // Mensagem específica
         $this->index = $index;

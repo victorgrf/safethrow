@@ -8,6 +8,10 @@ use Symfony\Component\HttpFoundation\Response;
 class UnprocessableEntityException extends HttpException {
     private string $entity;
     private string $reason;
+    
+    public static function getDefaultMessage(): string {
+        return 'Incapaz de processar o conteúdo da requisição.';
+    }
 
     public function __construct(
         string $entity,
@@ -15,7 +19,7 @@ class UnprocessableEntityException extends HttpException {
     ) {
         // Dados Padrões
         $status_code = Response::HTTP_UNPROCESSABLE_ENTITY;
-        $message = 'Incapaz de processar o conteúdo da requisição.';
+        $message = $this->getDefaultMessage();
 
         // Mensagem específica
         $this->entity = $entity;

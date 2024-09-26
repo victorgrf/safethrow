@@ -8,12 +8,16 @@ use Symfony\Component\HttpFoundation\Response;
 class ForbiddenException extends HttpException {
     private array $actions;
 
+    public static function getDefaultMessage(): string {
+        return 'Permissão negada.';
+    }
+
     public function __construct(
         array $actions
     ) {
         // Dados Padrões
         $status_code = Response::HTTP_FORBIDDEN;
-        $message = 'Permissão negada.';
+        $message = $this->getDefaultMessage();
 
         // Mensagem específica
         $this->actions = $actions;

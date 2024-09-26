@@ -1,6 +1,6 @@
 <?php
 
-namespace SafeThrow\Facades;
+namespace SafeThrow\Services;
 
 use SafeThrow\Exceptions\Defaults\HttpException;
 use SafeThrow\Exceptions\BadRequestException;
@@ -79,7 +79,7 @@ class Suppress {
     /**
      * Adiciona a exceção SafeThrow\Exceptions\UnprocessableEntityException na lista das que devem ser ignoradas nessa corrente
      */
-    public function unprocessableContent(): self {
+    public function unprocessableEntity(): self {
         $this->addException(UnprocessableEntityException::class);
         return $this;
     }
