@@ -20,7 +20,7 @@ class Exceptions {
             $safethrow_type = $responseContent['safethrow-type'];
             $class_name = "SafeThrow\\Exceptions\\$safethrow_type"; 
             $exception = $class_name::fromArray($responseContent);
-        } catch (Exception $e) {throw $e;
+        } catch (Exception $e) {
             return;
         }
 
