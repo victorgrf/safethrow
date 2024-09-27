@@ -22,9 +22,9 @@ class CallExceptionsTest extends TestCase {
     }
 
     /**
-     * composer test:filter CallExceptionsTest::test_bad_request_exception
+     * composer test:filter CallExceptionsTest::test_call_bad_request_exception
      */
-    public function test_bad_request_exception() {
+    public function test_call_bad_request_exception() {
         $indexes = ['index1', 'index2'];
 
         $fakeException = new BadRequestException($indexes);
@@ -37,9 +37,9 @@ class CallExceptionsTest extends TestCase {
     }
 
     /**
-     * composer test:filter CallExceptionsTest::test_conflict_exception
+     * composer test:filter CallExceptionsTest::test_call_conflict_exception
      */
-    public function test_conflict_exception() {
+    public function test_call_conflict_exception() {
         $resource = 'example';
         $state = 'deleted';
 
@@ -53,9 +53,9 @@ class CallExceptionsTest extends TestCase {
     }
 
     /**
-     * composer test:filter CallExceptionsTest::test_forbidden_exception
+     * composer test:filter CallExceptionsTest::test_call_forbidden_exception
      */
-    public function test_forbidden_exception() {
+    public function test_call_forbidden_exception() {
         $actions = ['ACTION_1', 'ACTION_2'];
 
         $fakeException = new ForbiddenException($actions);
@@ -68,9 +68,9 @@ class CallExceptionsTest extends TestCase {
     }
 
     /**
-     * composer test:filter CallExceptionsTest::test_internal_server_error_exception
+     * composer test:filter CallExceptionsTest::test_call_internal_server_error_exception
      */
-    public function test_internal_server_error_exception() {
+    public function test_call_internal_server_error_exception() {
         $errors = ['erro1' => 'contexto', 'erro2' => 'contexto'];
 
         $fakeException = new InternalServerErrorException($errors);
@@ -83,9 +83,9 @@ class CallExceptionsTest extends TestCase {
     }
 
     /**
-     * composer test:filter CallExceptionsTest::test_not_found_exception
+     * composer test:filter CallExceptionsTest::test_call_not_found_exception
      */
-    public function test_not_found_exception() {
+    public function test_call_not_found_exception() {
         $index = 'index';
         $where = 'where';
 
@@ -99,9 +99,9 @@ class CallExceptionsTest extends TestCase {
     }
 
     /**
-     * composer test:filter CallExceptionsTest::test_unauthorized_exception
+     * composer test:filter CallExceptionsTest::test_call_unauthorized_exception
      */
-    public function test_unauthorized_exception() {
+    public function test_call_unauthorized_exception() {
         $reason = 'example';
 
         $fakeException = new UnauthorizedException($reason);
@@ -114,9 +114,9 @@ class CallExceptionsTest extends TestCase {
     }
 
     /**
-     * composer test:filter CallExceptionsTest::test_unprocessable_entity_exception
+     * composer test:filter CallExceptionsTest::test_call_unprocessable_entity_exception
      */
-    public function test_unprocessable_entity_exception() {
+    public function test_call_unprocessable_entity_exception() {
         $entity = 'it';
         $reason = 'example';
 
