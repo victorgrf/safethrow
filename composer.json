@@ -1,5 +1,5 @@
 {
-    "name": "ati/safethrow",
+    "name": "victorgrf/safethrow",
     "description": "Lançamento e tratamento de exceções padronizado para aplicações Laravel.",
     "type": "library",
     "require-dev": {
