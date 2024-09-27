@@ -5,13 +5,16 @@ namespace SafeThrow\Exceptions\Defaults;
 use Exception;
 
 abstract class HttpException extends Exception {
-    private null|array $errors;
+    protected null|array $errors;
+    protected string $type;
 
     public function __construct(
         private int $status_code,
         string $message,
-        null|array $errors = null
+        null|array $errors = null,
+        string $type
     ) {
+        $this->type = $type;
         $this->errors = $errors;
         parent::__construct($message);
     }
@@ -24,5 +27,10 @@ abstract class HttpException extends Exception {
         return $this->errors;
     }
 
+    public function getType(): string {
+        return $this->type;
+    }
+
     abstract public static function getDefaultMessage(): string;
+    // abstract public static function fromArray(array $data): self;
 }

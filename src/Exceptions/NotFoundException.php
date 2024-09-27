@@ -8,6 +8,12 @@ use SafeThrow\Exceptions\Defaults\HttpException;
 class NotFoundException extends HttpException {
     private string $index;
     private string $where;
+
+    public static function fromArray(array $data): self {
+        $obj = new NotFoundException(index: '', where: '');
+        $obj->errors = ($data['errors']);
+        return $obj;
+    }
     
     public static function getDefaultMessage(): string {
         return 'Conteúdo não encontrado.';
@@ -31,7 +37,7 @@ class NotFoundException extends HttpException {
         ];
 
         // Enviando para a clase pai
-        parent::__construct($status_code, $message, $errors);
+        parent::__construct($status_code, $message, $errors, type: class_basename(self::class));
     }
 
     public function getIndex(): string {

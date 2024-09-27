@@ -2,10 +2,31 @@
 
 namespace SafeThrow\Facades;
 
+use Exception;
 use SafeThrow\Services\ExceptionCaller;
 use SafeThrow\Services\Suppress;
 
 class Exceptions {
+    /**
+     * Caso o array informado possa ser convertido para uma exceção do SafeThrow, ele será convertido e a exceção será lançado.
+     * 
+     * Use para converter respostas de APIs que também utlizem o SafeThrow, por exemplo.
+     */
+    public function throwFromResponse(array $responseContent): void {
+        $exception = null;
+
+        // Qualquer erro que ocorrer aqui podemos assumir que a exceção não é do safeThrow
+        try {
+            $safethrow_type = $responseContent['safethrow-type'];
+            $class_name = "SafeThrow\\Exceptions\\$safethrow_type"; 
+            $exception = $class_name::fromArray($responseContent);
+        } catch (Exception $e) {throw $e;
+            return;
+        }
+
+        throw $exception;
+    }
+
     /**
      * Cria uma instância de SafeThrow\Facades\Suppress.
      * 

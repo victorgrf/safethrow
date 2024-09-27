@@ -8,6 +8,10 @@ use Symfony\Component\HttpFoundation\Response;
 class UnprocessableEntityException extends HttpException {
     private string $entity;
     private string $reason;
+
+    public static function fromArray(array $data): self {
+        return new UnprocessableEntityException(entity: array_keys($data['errors'])[0], reason: array_values($data['errors'])[0]);
+    }
     
     public static function getDefaultMessage(): string {
         return 'Incapaz de processar o conteúdo da requisição.';
@@ -31,7 +35,7 @@ class UnprocessableEntityException extends HttpException {
         ];
 
         // Enviando para a clase pai
-        parent::__construct($status_code, $message, $errors);
+        parent::__construct($status_code, $message, $errors, type: class_basename(self::class));
     }
 
     public function getEntity(): string {

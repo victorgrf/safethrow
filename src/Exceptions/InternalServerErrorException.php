@@ -6,6 +6,10 @@ use SafeThrow\Exceptions\Defaults\HttpException;
 use Symfony\Component\HttpFoundation\Response;
 
 class InternalServerErrorException extends HttpException {
+    public static function fromArray(array $data): self {
+        return new InternalServerErrorException(errors: $data['errors'] ?? null);
+    }
+
     public static function getDefaultMessage(): string {
         return 'Erro interno no servidor.';
     }
@@ -18,6 +22,6 @@ class InternalServerErrorException extends HttpException {
         $message = $this->getDefaultMessage();
 
         // Enviando para a clase pai
-        parent::__construct($status_code, $message, $errors);
+        parent::__construct($status_code, $message, $errors, type: class_basename(self::class));
     }
 }

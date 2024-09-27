@@ -20,6 +20,7 @@ class Handler extends ExceptionHandler {
         if ($exception->getErrors()) {
             $error_response['errors'] = $exception->getErrors();
         }
+        $error_response['safethrow-type'] = $exception->getType();
 
         // Adicionando informações do caminho até o erro caso o debug esteja ativado
         if (config('app.debug')) {

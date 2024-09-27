@@ -8,6 +8,10 @@ use Symfony\Component\HttpFoundation\Response;
 class ForbiddenException extends HttpException {
     private array $actions;
 
+    public static function fromArray(array $data): self {
+        return new ForbiddenException(actions: array_keys($data['errors']));
+    }
+
     public static function getDefaultMessage(): string {
         return 'Permissão negada.';
     }
@@ -29,7 +33,7 @@ class ForbiddenException extends HttpException {
         }
 
         // Enviando para a clase pai
-        parent::__construct($status_code, $message, $errors);
+        parent::__construct($status_code, $message, $errors, type: class_basename(self::class));
     }
 
     public function getActions(): array {

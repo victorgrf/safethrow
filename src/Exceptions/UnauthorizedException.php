@@ -7,6 +7,10 @@ use SafeThrow\Exceptions\Defaults\HttpException;
 
 class UnauthorizedException extends HttpException {
     private string $reason;
+
+    public static function fromArray(array $data): self {
+        return new UnauthorizedException(reason: array_values($data['errors'])[0]);
+    }
     
     public static function getDefaultMessage(): string {
         return 'Não autorizado.';
@@ -28,7 +32,7 @@ class UnauthorizedException extends HttpException {
         ];
             
         // Enviando para a clase pai
-        parent::__construct($status_code, $message, $errors);
+        parent::__construct($status_code, $message, $errors, type: class_basename(self::class));
     }
 
     public function getReason(): string {

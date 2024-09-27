@@ -12,6 +12,10 @@ class BadRequestException extends HttpException {
         return 'Os dados fornecidos são inválidos.';
     }
 
+    public static function fromArray(array $data): self {
+        return new BadRequestException(indexes: array_keys($data['errors']));
+    }
+
     public function __construct(
         array $indexes,
     ) {
@@ -31,7 +35,7 @@ class BadRequestException extends HttpException {
         }
 
         // Enviando para a clase pai
-        parent::__construct($status_code, $message, $errors ?? null);
+        parent::__construct($status_code, $message, $errors ?? null, type: class_basename(self::class));
     }
 
     public function getIndexes(): array {
