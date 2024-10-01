@@ -26,7 +26,7 @@ class Suppress {
     public function try(callable $function, ...$parameters): mixed {
         // try-catch cala boca
         try {
-            return $function($parameters);
+            return $function(...$parameters);
         } catch (HttpException $e) {
             if (!in_array(get_class($e), $this->exceptionsNames)) {
                 throw $e;
