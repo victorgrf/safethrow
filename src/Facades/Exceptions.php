@@ -8,7 +8,7 @@ use SafeThrow\Services\Suppress;
 
 class Exceptions {
     /**
-     * Caso o array informado possa ser convertido para uma exceção do SafeThrow, ele será convertido e a exceção será lançado.
+     * Caso o array informado possa ser convertido para uma exceção do SafeThrow, ele será convertido e a exceção será lançada.
      * 
      * Use para converter respostas de APIs que também utlizem o SafeThrow, por exemplo.
      */

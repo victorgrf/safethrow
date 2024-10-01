@@ -37,6 +37,20 @@ class Suppress {
     }
 
     /**
+     * Adiciona todas as exceções do SafeThrow na lista das que devem ser ignoradas nessa corrente
+     */
+    public function all(): self {
+        $this->badRequest();
+        $this->unauthorized();
+        $this->forbidden();
+        $this->notFound();
+        $this->conflict();
+        $this->unprocessableEntity();
+        $this->internalServerError();
+        return $this;
+    }
+
+    /**
      * Adiciona a exceção SafeThrow\Exceptions\BadRequestException na lista das que devem ser ignoradas nessa corrente
      */
     public function badRequest(): self {
