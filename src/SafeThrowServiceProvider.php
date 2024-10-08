@@ -15,8 +15,9 @@ class SafeThrowServiceProvider extends ServiceProvider {
     }
 
     public function registerExceptionRenderer() {
-        $this->app->resolving(ExceptionHandler::class, function (\Illuminate\Foundation\Exceptions\Handler $handler) {
+        $this->app->extend(ExceptionHandler::class, function ($handler, $app) {
             $handler->renderable([\SafeThrow\Facades\Handler::class, 'whenSafeThrowException']);
+            return $handler;
         });
     }
 }
