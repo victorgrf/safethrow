@@ -29,7 +29,7 @@ class ForbiddenException extends HttpException {
         // Aplicando a mensagem específica em $errors
         $errors = [];
         foreach ($this->actions as $action) {
-            $errors[$action] = "O usuário logado não tem permissão para usar o action: $action.";
+            $errors[$action] = "O usuário logado não tem permissão para: $action.";
         }
 
         // Enviando para a clase pai
